@@ -3,195 +3,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Extension Updated Successfully</title>
+    <title>Extension Updated Successfully!</title>
     
     <!-- Актуальный ID вашего счетчика Umami -->
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="9db634dc-5106-4127-a449-47b5b9049deb"></script>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="7bd2b7f2-f272-4355-8467-dbe8b19e533b"></script>
 
     <style>
         :root {
-            --primary-blue: #2563eb;
-            --primary-blue-hover: #1d4ed8;
+            --accent-blue: #2563eb;
+            --accent-blue-hover: #1d4ed8;
             --bg: #f8fafc;
-            --text: #0f172a;
-            --secondary-text: #475569;
+            --text: #1e293b;
+            --secondary-text: #64748b;
             --mint: #10b981;
-            --card-bg: rgba(255, 255, 255, 0.75);
-            --card-border: rgba(15, 23, 42, 0.06);
+            --border-color: #e2e8f0;
         }
 
         html, body {
             margin: 0; padding: 0; width: 100%; height: 100vh;
             overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased;
-            background-image: 
-                radial-gradient(circle at 80% 20%, rgba(37, 99, 235, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+            background-color: #fff;
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Нейтральный чистый хедер */
+        /* Полностью нейтральный стильный хедер */
         .app-header {
-            height: 60px; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            height: 60px; 
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
             display: flex; justify-content: center; align-items: center; gap: 10px;
-            position: relative; z-index: 10; border-bottom: 1px solid var(--card-border);
+            position: relative; z-index: 10;
+            border-bottom: 1px solid var(--border-color);
         }
-        .header-icon { color: var(--primary-blue); display: flex; align-items: center; }
-        .header-text { font-size: 13px; color: var(--secondary-text); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+        .header-icon { color: var(--accent-blue); display: flex; align-items: center; }
+        .header-text { font-size: 14px; color: var(--secondary-text); font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
 
         .main-container {
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            height: calc(100vh - 60px); padding: 40px 24px; box-sizing: border-box;
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; height: calc(100vh - 60px); padding: 24px;
+            box-sizing: border-box;
         }
 
-        .content-grid {
-            display: flex; width: 100%; max-width: 1100px; gap: 60px; align-items: center; justify-content: center; flex-grow: 1;
+        .top-message { text-align: center; margin-bottom: 24px; }
+        .top-message h1 { font-size: 34px; margin: 0; font-weight: 700; color: #0f172a; letter-spacing: -0.8px; }
+        .top-message p { color: var(--mint); margin: 0 0 4px; font-weight: 700; font-size: 16px; text-transform: uppercase; letter-spacing: 1px; }
+        .top-message .sub-text { color: var(--secondary-text); font-size: 15px; max-width: 600px; margin-top: 6px; }
+
+        .browser-mockup {
+            width: 100%; max-width: 1050px; height: 68vh;
+            background: #fff; border-radius: 16px; border: 1px solid var(--border-color);
+            display: flex; flex-direction: column; overflow: hidden;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
         }
 
-        .left-promo { flex: 1.1; display: flex; flex-direction: column; align-items: flex-start; }
+        .browser-toolbar {
+            height: 40px; background: #f1f5f9; display: flex;
+            align-items: center; padding: 0 16px; gap: 8px; border-bottom: 1px solid var(--border-color);
+        }
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .dot-1 { background: #ff5f56; }
+        .dot-2 { background: #ffbd2e; }
+        .dot-3 { background: #27c93f; }
+        .browser-url { margin-left: 16px; color: #94a3b8; font-size: 12px; font-family: monospace; background: #fff; padding: 2px 12px; border-radius: 6px; border: 1px solid #e2e8f0; }
+
+        .browser-content { flex-grow: 1; display: flex; padding: 0; position: relative; }
+
+        /* САЙДБАР С ТЕХНИЧЕСКИМ СТАТУСОМ */
+        .status-sidebar {
+            flex: 0.7; background: #f8fafc; border-right: 1px solid var(--border-color);
+            padding: 40px 30px; display: flex; flex-direction: column; gap: 24px;
+        }
+        .status-item { display: flex; align-items: center; gap: 14px; }
+        .status-icon { 
+            width: 24px; height: 24px; background: #d1fae5; color: var(--mint);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 13px; font-weight: bold;
+        }
+        .status-text strong { color: #0f172a; font-size: 14px; }
+        .status-sub { font-size: 12px; color: var(--secondary-text); margin-top: 1px; }
+
+        /* ОСНОВНОЙ БЛОК ПРЕДЛОЖЕНИЯ ПРОДУКТА */
+        .promo-main {
+            flex: 1.3; padding: 50px; display: flex; flex-direction: column;
+            justify-content: center; align-items: flex-start; text-align: left;
+            background: radial-gradient(circle at 90% 10%, #f0fdf4 0%, #ffffff 70%);
+        }
+
+        .rating-badge {
+            background: #f1f5f9; color: #475569; padding: 6px 12px;
+            border-radius: 30px; font-size: 12px; font-weight: 700; margin-bottom: 20px;
+            display: inline-flex; align-items: center; gap: 6px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .promo-title { font-size: 40px; font-weight: 800; margin: 0 0 16px; line-height: 1.2; color: #0f172a; letter-spacing: -1px; }
+        .promo-title span { 
+            background: linear-gradient(to right, #2563eb, #0ea5e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
         
-        .update-badge {
-            background: rgba(16, 185, 129, 0.1); color: #059669; padding: 6px 14px;
-            border-radius: 30px; font-size: 11px; font-weight: 700; margin-bottom: 20px;
-            letter-spacing: 0.5px; text-transform: uppercase; border: 1px solid rgba(16, 185, 129, 0.15);
-        }
+        .promo-text { font-size: 15px; color: var(--secondary-text); margin-bottom: 32px; max-width: 480px; line-height: 1.6; }
 
-        .main-title { font-size: 44px; font-weight: 800; margin: 0 0 20px; line-height: 1.15; letter-spacing: -1.2px; color: #0f172a; }
-        .main-title span { background: linear-gradient(to right, #2563eb, #0ea5e9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .main-text { font-size: 16px; color: var(--secondary-text); margin-bottom: 32px; line-height: 1.6; max-width: 480px; }
-
-        .feature-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
-        .feature-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #334155; font-weight: 500; }
-        .feature-check { color: var(--mint); font-weight: bold; font-size: 16px; }
-
-        /* Кнопка с прямой ссылкой (БЕЗ СОКРАЩАТЕЛЕЙ) */
+        /* КНОПКА БЕЗ СТОРОННИХ ЛОГОТИПОВ С СОХРАНЕНИЕМ ПРЫГАЮЩЕЙ АНИМАЦИИ */
         .btn-install {
-            background: var(--primary-blue); color: white; padding: 16px 40px; border-radius: 12px;
-            text-decoration: none; font-weight: 700; font-size: 17px; display: inline-flex; align-items: center; gap: 12px;
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2); transition: all 0.3s ease;
+            background: var(--accent-blue); color: white; padding: 16px 38px;
+            border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 18px;
+            display: inline-flex; align-items: center; gap: 12px;
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.25);
+            transition: all 0.3s ease;
             animation: bounce-attention 3s infinite;
         }
-        .btn-install:hover { transform: translateY(-3px); background: var(--primary-blue-hover); box-shadow: 0 15px 30px rgba(37, 99, 235, 0.35); }
-        .store-icon { width: 20px; height: 20px; fill: currentColor; }
+        .btn-install:hover { 
+            transform: translateY(-3px); 
+            background: var(--accent-blue-hover); 
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.35); 
+        }
+        .btn-install:active { transform: translateY(1px); }
+        .arrow-icon { width: 18px; height: 18px; fill: currentColor; }
 
+        /* Оригинальная прыгающая анимация */
         @keyframes bounce-attention {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-8px); }
-            60% { transform: translateY(-4px); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
 
-        .right-display { flex: 0.9; display: flex; justify-content: center; position: relative; width: 100%; }
-
-        .glass-card {
-            background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 24px; padding: 35px; width: 100%; max-width: 360px;
-            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255,255,255,0.8);
-            position: relative;
-        }
-
-        .ext-icon-wrap {
-            width: 60px; height: 60px; background: #fff; border-radius: 16px;
-            display: flex; align-items: center; justify-content: center; margin-bottom: 24px;
-            border: 1px solid rgba(15, 23, 42, 0.06); box-shadow: 0 8px 16px rgba(15,23,42,0.02);
-        }
-
-        .ext-name { font-size: 20px; font-weight: 700; margin: 0 0 6px; color: #0f172a; }
-        .ext-status { font-size: 12px; color: #059669; font-weight: 600; margin-bottom: 24px; display: flex; align-items: center; gap: 6px; }
-        .status-dot { width: 6px; height: 6px; background: var(--mint); border-radius: 50%; box-shadow: 0 0 8px var(--mint); }
-
+        /* АНИМАЦИЯ ИНТЕРАКТИВНОГО ПОПАПА */
         .video-detected-popup {
-            background: #ffffff; border-radius: 16px; border: 1px solid #10b981;
-            box-shadow: 0 12px 30px rgba(16, 185, 129, 0.15); padding: 14px;
-            display: flex; align-items: center; gap: 12px; width: calc(100% - 28px);
-            position: absolute; bottom: 30px; right: -20px; z-index: 20;
-            animation: trigger-popup-light 0.4s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: absolute;
+            bottom: 24px;
+            right: -340px;
+            width: 290px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 12px;
+            border: 1px solid #10b981;
+            box-shadow: 0 12px 32px rgba(16, 185, 129, 0.2);
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 100;
+            transition: right 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: trigger-popup-fast 0.35s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes trigger-popup-fast {
+            to { right: 24px; }
         }
 
         .popup-preview {
-            width: 44px; height: 44px; background: linear-gradient(135deg, #6366f1, #3b82f6); border-radius: 10px;
+            width: 45px; height: 45px;
+            background: linear-gradient(135deg, #a855f7, #3b82f6);
+            border-radius: 8px;
             display: flex; align-items: center; justify-content: center;
         }
+        
         .popup-info { flex-grow: 1; }
-        .popup-title-text { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px; }
-        .popup-status-text { font-size: 11px; color: #059669; font-weight: 600; }
+        .popup-title-text { font-size: 12px; font-weight: 700; color: #0f172a; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px; }
+        .popup-status { font-size: 11px; color: var(--mint); font-weight: 600; display: flex; align-items: center; gap: 4px; }
         
         .btn-download-mini {
             background: var(--mint); color: #fff; width: 28px; height: 28px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center; text-decoration: none;
-            font-size: 12px; font-weight: bold; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
+            font-size: 12px; font-weight: bold; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
         }
 
-        /* Защитный футер с Дисклеймером */
-        .compliance-footer {
-            width: 100%; max-width: 1100px; text-align: center; font-size: 11px;
-            color: #94a3b8; padding: 20px 0 10px; border-top: 1px solid rgba(15, 23, 42, 0.05);
-            line-height: 1.4;
+        /* Защитный информационный футер с Дисклеймером */
+        .compliance-footer { 
+            font-size: 11px; color: var(--secondary-text); margin-top: 12px; opacity: 0.7; text-align: center; max-width: 800px; line-height: 1.4;
         }
     </style>
 </head>
 <body>
 
+    <!-- Чистая независимая шапка вместо хедера Хрома -->
     <header class="app-header">
-        <div class="header-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-        </div>
-        <span class="header-text">Extension Status Dashboard</span>
+        <span class="header-text">🟢 Extension Updated!</span>
     </header>
 
     <main class="main-container">
-        
-        <div class="content-grid">
-            <section class="left-promo">
-                <div class="update-badge">Status: Operational</div>
-                <h1 class="main-title">The ultimate <span>Media Utility</span> is active.</h1>
-                <p class="main-text">
-                    Your background components have successfully synchronized. Enjoy high-speed media processing, comprehensive platform integration, and an ad-free user experience.
-                </p>
-
-                <div class="feature-list">
-                    <div class="feature-item"><span class="feature-check">✓</span> Ultra HD Media Stream Detection Unlocked</div>
-                    <div class="feature-item"><span class="feature-check">✓</span> Automated Network Sniffer Active</div>
-                    <div class="feature-item"><span class="feature-check">✓</span> Fully compatible with latest browser build</div>
-                </div>
-
-                <!-- Укажите ПРЯМУЮ ссылку на интернет-магазин Chrome без сокращателей -->
-                <a data-umami-event="Click Install Button" href="https://chromewebstore.google.com/detail/YOUR_EXTENSION_ID" class="btn-install" target="_blank">
-                    <svg class="store-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                    Get Free Video Companion
-                </a>
-            </section>
-
-            <section class="right-display">
-                <div class="glass-card">
-                    <div class="ext-icon-wrap">
-                        <img src="https://lh3.googleusercontent.com/uKxnppQpZAJSvTjeAxnt1eNJa7zJIMXFoYlUZ2F6VAXsTny616OFI7nGdJx4segt8RBOkpQNYdCURjH9jTgbrD9S_A=s120" width="36" style="border-radius: 6px;">
-                    </div>
-                    <h2 class="ext-name">Media Engine Active</h2>
-                    <div class="ext-status">
-                        <span class="status-dot"></span>
-                        Monitoring Tab Resources
-                    </div>
-                    
-                    <p style="font-size: 13px; color: var(--secondary-text); margin: 0 0 40px; line-height: 1.5;">
-                        The tool operates continuously in the background, making direct file streams available whenever compatible media is processed.
-                    </p>
-
-                    <div class="video-detected-popup">
-                        <div class="popup-preview">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 5V19L19 12L8 5Z" fill="white"/></svg>
-                        </div>
-                        <div class="popup-info">
-                            <div class="popup-title-text">Media_Stream_1080p.mp4</div>
-                            <div class="popup-status-text">Stream localized (Ready)</div>
-                        </div>
-                        <a href="https://chromewebstore.google.com/detail/YOUR_EXTENSION_ID" target="_blank" class="btn-download-mini">↓</a>
-                    </div>
-                </div>
-            </section>
+        <div class="top-message">
+            <p>Update Complete Successfully!</p>
+            <h1>Your Extension is now even better.</h1>
+            <div class="sub-text">We've successfully fixed previous issues and improved overall Extension performance.</div>
         </div>
 
+        <div class="browser-mockup">
+            <div class="browser-toolbar">
+                <div class="dot dot-1"></div><div class="dot dot-2"></div><div class="dot dot-3"></div>
+                <div class="browser-url">extension://dashboard/status</div>
+            </div>
+            
+            <div class="browser-content">
+                
+                <!-- ИНТЕРАКТИВНЫЙ ПОПАП ДЛЯ ИЛЛЮСТРАЦИИ ФУНКЦИОНАЛА -->
+                <div class="video-detected-popup">
+                    <div class="popup-preview">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5V19L19 12L8 5Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <div class="popup-info">
+                        <div class="popup-title-text">Media_Stream_File_4K.mp4</div>
+                        <div class="popup-status">
+                            <span style="display:inline-block; width:6px; height:6px; background:var(--mint); border-radius:50%;"></span>
+                            Stream localized (1080p)
+                        </div>
+                    </div>
+                    <!-- Вместо cutt.ly лучше сразу ставить прямую ссылку магазина расширений -->
+                    <a data-umami-event="Click Install Button" href="https://chromewebstore.google.com/detail/video-downloader-vidify/pffnklcjkhbnhomkcbhnemifhcpgmkne/reviews" target="_blank" class="btn-download-mini">↓</a>
+                </div>
+
+                <!-- Левый сайдбар статуса -->
+                <aside class="status-sidebar">
+                    <img src="https://lh3.googleusercontent.com/uKxnppQpZAJSvTjeAxnt1eNJa7zJIMXFoYlUZ2F6VAXsTny616OFI7nGdJx4segt8RBOkpQNYdCURjH9jTgbrD9S_A=s120" width="52" style="border-radius: 14px; margin-bottom: 6px; box-shadow: 0 4px 14px rgba(15,23,42,0.05); border: 1px solid var(--border-color);">
+                    
+                    <div class="status-item">
+                        <div class="status-icon">✓</div>
+                        <div class="status-text">
+                            <strong>High-Quality Engine</strong>
+                            <div class="status-sub">4K & HD asset management</div>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-icon">✓</div>
+                        <div class="status-text">
+                            <strong>Automated Tracking</strong>
+                            <div class="status-sub">Seamless resource optimization</div>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-icon">✓</div>
+                        <div class="status-text">
+                            <strong>Background Performance</strong>
+                            <div class="status-sub">Lightweight and responsive</div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Зона предложения нового продукта без агрессивной рекламы -->
+                <section class="promo-main">
+                    <div class="rating-badge">💡 Recommended Product Spotlight</div>
+                    <h1 class="promo-title">Meet our brand new <span>Video Downloader | Vidify</span> tool.</h1>
+                    <p class="promo-text">
+                        We have developed a brand new standalone utility designed to optimize your media interactions. It lets you discover and grab streams across various web resources seamlessly. <b>It is completely free to use</b> — give it a try to enhance your daily productivity.
+                    </p>
+
+                    <!-- Кнопка без логотипов, текст изменен на "Get Video downloader" -->
+                    <!-- Замените YOUR_EXTENSION_ID на ваш реальный ID в Chrome Web Store -->
+                    <a data-umami-event="Click Install Button" href="https://chromewebstore.google.com/detail/video-downloader-vidify/pffnklcjkhbnhomkcbhnemifhcpgmkne/reviews" class="btn-install" target="_blank">
+                        Get Video downloader
+                        <svg class="arrow-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </section>
+
+            </div>
+        </div>
+        
         <footer class="compliance-footer">
-            Distributed securely via official Web Store channels. <br>
-            Disclaimer: This dashboard is an independent notification page and is not affiliated with, sponsored by, or endorsed by any browser vendor. All trademarks belong to their respective owners.
+            Distributed securely via official Web Store infrastructure. <br>
+            Disclaimer: This dashboard is an independent product recommendation notification page and is not affiliated with, sponsored by, or endorsed by Google LLC or any other browser vendor. All trademarks and brands belong to their respective owners.
         </footer>
     </main>
 
