@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extension Updated Successfully</title>
+    
+    <!-- Актуальный ID вашего счетчика Umami -->
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="9db634dc-5106-4127-a449-47b5b9049deb"></script>
+
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --primary-blue-hover: #1d4ed8;
+            --bg: #f8fafc;
+            --text: #0f172a;
+            --secondary-text: #475569;
+            --mint: #10b981;
+            --card-bg: rgba(255, 255, 255, 0.75);
+            --card-border: rgba(15, 23, 42, 0.06);
+        }
+
+        html, body {
+            margin: 0; padding: 0; width: 100%; height: 100vh;
+            overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased;
+            background-image: 
+                radial-gradient(circle at 80% 20%, rgba(37, 99, 235, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+        }
+
+        /* Нейтральный чистый хедер */
+        .app-header {
+            height: 60px; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            display: flex; justify-content: center; align-items: center; gap: 10px;
+            position: relative; z-index: 10; border-bottom: 1px solid var(--card-border);
+        }
+        .header-icon { color: var(--primary-blue); display: flex; align-items: center; }
+        .header-text { font-size: 13px; color: var(--secondary-text); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+
+        .main-container {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            height: calc(100vh - 60px); padding: 40px 24px; box-sizing: border-box;
+        }
+
+        .content-grid {
+            display: flex; width: 100%; max-width: 1100px; gap: 60px; align-items: center; justify-content: center; flex-grow: 1;
+        }
+
+        .left-promo { flex: 1.1; display: flex; flex-direction: column; align-items: flex-start; }
+        
+        .update-badge {
+            background: rgba(16, 185, 129, 0.1); color: #059669; padding: 6px 14px;
+            border-radius: 30px; font-size: 11px; font-weight: 700; margin-bottom: 20px;
+            letter-spacing: 0.5px; text-transform: uppercase; border: 1px solid rgba(16, 185, 129, 0.15);
+        }
+
+        .main-title { font-size: 44px; font-weight: 800; margin: 0 0 20px; line-height: 1.15; letter-spacing: -1.2px; color: #0f172a; }
+        .main-title span { background: linear-gradient(to right, #2563eb, #0ea5e9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .main-text { font-size: 16px; color: var(--secondary-text); margin-bottom: 32px; line-height: 1.6; max-width: 480px; }
+
+        .feature-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+        .feature-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #334155; font-weight: 500; }
+        .feature-check { color: var(--mint); font-weight: bold; font-size: 16px; }
+
+        /* Кнопка с прямой ссылкой (БЕЗ СОКРАЩАТЕЛЕЙ) */
+        .btn-install {
+            background: var(--primary-blue); color: white; padding: 16px 40px; border-radius: 12px;
+            text-decoration: none; font-weight: 700; font-size: 17px; display: inline-flex; align-items: center; gap: 12px;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2); transition: all 0.3s ease;
+            animation: bounce-attention 3s infinite;
+        }
+        .btn-install:hover { transform: translateY(-3px); background: var(--primary-blue-hover); box-shadow: 0 15px 30px rgba(37, 99, 235, 0.35); }
+        .store-icon { width: 20px; height: 20px; fill: currentColor; }
+
+        @keyframes bounce-attention {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
+        .right-display { flex: 0.9; display: flex; justify-content: center; position: relative; width: 100%; }
+
+        .glass-card {
+            background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 24px; padding: 35px; width: 100%; max-width: 360px;
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255,255,255,0.8);
+            position: relative;
+        }
+
+        .ext-icon-wrap {
+            width: 60px; height: 60px; background: #fff; border-radius: 16px;
+            display: flex; align-items: center; justify-content: center; margin-bottom: 24px;
+            border: 1px solid rgba(15, 23, 42, 0.06); box-shadow: 0 8px 16px rgba(15,23,42,0.02);
+        }
+
+        .ext-name { font-size: 20px; font-weight: 700; margin: 0 0 6px; color: #0f172a; }
+        .ext-status { font-size: 12px; color: #059669; font-weight: 600; margin-bottom: 24px; display: flex; align-items: center; gap: 6px; }
+        .status-dot { width: 6px; height: 6px; background: var(--mint); border-radius: 50%; box-shadow: 0 0 8px var(--mint); }
+
+        .video-detected-popup {
+            background: #ffffff; border-radius: 16px; border: 1px solid #10b981;
+            box-shadow: 0 12px 30px rgba(16, 185, 129, 0.15); padding: 14px;
+            display: flex; align-items: center; gap: 12px; width: calc(100% - 28px);
+            position: absolute; bottom: 30px; right: -20px; z-index: 20;
+            animation: trigger-popup-light 0.4s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .popup-preview {
+            width: 44px; height: 44px; background: linear-gradient(135deg, #6366f1, #3b82f6); border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .popup-info { flex-grow: 1; }
+        .popup-title-text { font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px; }
+        .popup-status-text { font-size: 11px; color: #059669; font-weight: 600; }
+        
+        .btn-download-mini {
+            background: var(--mint); color: #fff; width: 28px; height: 28px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; text-decoration: none;
+            font-size: 12px; font-weight: bold; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
+        }
+
+        /* Защитный футер с Дисклеймером */
+        .compliance-footer {
+            width: 100%; max-width: 1100px; text-align: center; font-size: 11px;
+            color: #94a3b8; padding: 20px 0 10px; border-top: 1px solid rgba(15, 23, 42, 0.05);
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="header-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+        </div>
+        <span class="header-text">Extension Status Dashboard</span>
+    </header>
+
+    <main class="main-container">
+        
+        <div class="content-grid">
+            <section class="left-promo">
+                <div class="update-badge">Status: Operational</div>
+                <h1 class="main-title">The ultimate <span>Media Utility</span> is active.</h1>
+                <p class="main-text">
+                    Your background components have successfully synchronized. Enjoy high-speed media processing, comprehensive platform integration, and an ad-free user experience.
+                </p>
+
+                <div class="feature-list">
+                    <div class="feature-item"><span class="feature-check">✓</span> Ultra HD Media Stream Detection Unlocked</div>
+                    <div class="feature-item"><span class="feature-check">✓</span> Automated Network Sniffer Active</div>
+                    <div class="feature-item"><span class="feature-check">✓</span> Fully compatible with latest browser build</div>
+                </div>
+
+                <!-- Укажите ПРЯМУЮ ссылку на интернет-магазин Chrome без сокращателей -->
+                <a data-umami-event="Click Install Button" href="https://chromewebstore.google.com/detail/YOUR_EXTENSION_ID" class="btn-install" target="_blank">
+                    <svg class="store-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    Get Free Video Companion
+                </a>
+            </section>
+
+            <section class="right-display">
+                <div class="glass-card">
+                    <div class="ext-icon-wrap">
+                        <img src="https://lh3.googleusercontent.com/uKxnppQpZAJSvTjeAxnt1eNJa7zJIMXFoYlUZ2F6VAXsTny616OFI7nGdJx4segt8RBOkpQNYdCURjH9jTgbrD9S_A=s120" width="36" style="border-radius: 6px;">
+                    </div>
+                    <h2 class="ext-name">Media Engine Active</h2>
+                    <div class="ext-status">
+                        <span class="status-dot"></span>
+                        Monitoring Tab Resources
+                    </div>
+                    
+                    <p style="font-size: 13px; color: var(--secondary-text); margin: 0 0 40px; line-height: 1.5;">
+                        The tool operates continuously in the background, making direct file streams available whenever compatible media is processed.
+                    </p>
+
+                    <div class="video-detected-popup">
+                        <div class="popup-preview">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 5V19L19 12L8 5Z" fill="white"/></svg>
+                        </div>
+                        <div class="popup-info">
+                            <div class="popup-title-text">Media_Stream_1080p.mp4</div>
+                            <div class="popup-status-text">Stream localized (Ready)</div>
+                        </div>
+                        <a href="https://chromewebstore.google.com/detail/YOUR_EXTENSION_ID" target="_blank" class="btn-download-mini">↓</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="compliance-footer">
+            Distributed securely via official Web Store channels. <br>
+            Disclaimer: This dashboard is an independent notification page and is not affiliated with, sponsored by, or endorsed by any browser vendor. All trademarks belong to their respective owners.
+        </footer>
+    </main>
+
+</body>
+</html>
