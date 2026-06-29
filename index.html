@@ -159,10 +159,9 @@
 
         /* --- КАРТОЧКА ОВЕРЛЕЯ С ЛЕГКИМ КРАСИВЫМ ФОНОМ --- */
         .overlay-content {
-            /* Мягкий дизайнерский Clean Tech фон (Mesh эффект по углам) */
             background-image: 
-                radial-gradient(circle at 100% 0%, rgba(37, 99, 235, 0.04) 0%, transparent 45%), /* Легкий синий акцент */
-                radial-gradient(circle at 0% 100%, rgba(229, 62, 62, 0.03) 0%, transparent 45%),  /* Легкий красный акцент */
+                radial-gradient(circle at 100% 0%, rgba(37, 99, 235, 0.04) 0%, transparent 45%), 
+                radial-gradient(circle at 0% 100%, rgba(229, 62, 62, 0.03) 0%, transparent 45%),  
                 linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
             
             width: 92%;
@@ -289,7 +288,16 @@
             font-weight: bold;
         }
 
-        /* СИНЯЯ ПУЛЬСИРУЮЩАЯ КНОПКА */
+        /* КОНТЕЙНЕР ДЛЯ КНОПКИ И ПОДПИСИ ДОКАЗАТЕЛЬСТВА */
+        .cta-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* СИНЯЯ ПУЛЬСИРУЮЩАЯ КНОПКА С МАСШТАБИРОВАНИЕМ */
         .btn-cta {
             display: inline-flex;
             align-items: center;
@@ -303,11 +311,21 @@
             border-radius: 14px;
             text-decoration: none;
             border: 1px solid #1d4ed8;
-            transition: background-color 0.2s ease;
-            animation: pulse-animation 2s infinite;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            animation: pulse-animation 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
         }
         .btn-cta:hover {
             background-color: #1d4ed8;
+        }
+
+        /* СОЦИАЛЬНОЕ ДОКАЗАТЕЛЬСТВО ПОД КНОПКОЙ */
+        .social-proof-text {
+            font-size: 13px;
+            color: #718096;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         /* ИКОНКА CHROME WEB STORE ВНУТРИ КНОПКИ */
@@ -317,15 +335,18 @@
             object-fit: contain;
         }
 
-        /* Анимация пульсации тени */
+        /* Оживленная анимация пульсации (Тень + Легкое масштабирование до 1.03) */
         @keyframes pulse-animation {
             0% {
+                transform: scale(1);
                 box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.5);
             }
-            70% {
+            50% {
+                transform: scale(1.03);
                 box-shadow: 0 0 0 15px rgba(37, 99, 235, 0);
             }
             100% {
+                transform: scale(1);
                 box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
             }
         }
@@ -351,7 +372,7 @@
 <body>
 
 <div class="main-changelog">
-    <h1 class="main-title"><span>✓</span> Successfully Updated to v1.1.0</h1>
+    <h1 class="main-title"><span>✓</span>Successfully Updated to v1.3.2</h1>
     <p class="main-subtitle">
         The extension has been updated in your Chrome browser.<br>
         Make sure to test its new capabilities. All core systems are running flawlessly.
@@ -405,14 +426,12 @@
         </div>
 
         <div class="app-logo-container">
-            <img src="https://lh3.googleusercontent.com/shG_0Mjajw_n_Sk4rc2dKNC8bgPOi47P2XbaBKwTrgmv51671n4UDZ8vEl2biNpoer26c02vDJhxflvWUFmUTAIM=s120" alt="Extension Logo" class="app-logo">
+            <img src="https://lh3.googleusercontent.com/gyeg8ncBQbguTsrPUp7PtBFE-3BOleUJRfjzTwKgJ4bIFp12tGoIlQclF0g8wCBVnqs0OMlRnbQvAc75Pm-R2_5s0Q=s120" alt="Extension Logo" class="app-logo">
         </div>
 
-
-
-        <h2>Copy Everything - Paste Everywhere!</h2>
+        <h2>Ultimate Shopping Companion</h2>
         <p class="subtitle">
-            Instantly unblock right-click, bypass text selection restrictions, and copy content from any protected website.
+            Help you identify trusted retailers, find hidden rewards, and avoid suspicious websites before you even click.
         </p>
 
         <div class="inline-steps">
@@ -421,20 +440,25 @@
             <div>Step 2 — Click <strong>Add to Chrome</strong></div>
         </div>
 
-        <a href="https://cutt.ly/kt8DPpCv" class="btn-cta">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Google_Chrome_Web_Store_icon_2022.svg/1280px-Google_Chrome_Web_Store_icon_2022.svg.png" alt="Chrome Web Store" class="web-store-icon">
-            Add Extension - It's free
-        </a>
+        <div class="cta-container">
+            <a href="https://cutt.ly/It72sWKQ" class="btn-cta">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Google_Chrome_Web_Store_icon_2022.svg/1280px-Google_Chrome_Web_Store_icon_2022.svg.png" alt="Chrome Web Store" class="web-store-icon">
+                Add Extension - It's free
+            </a>
+            <div class="social-proof-text">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#38a169" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Trusted by over 20,000+ shoppers
+            </div>
+        </div>
 
         <div class="features-footer">
-            By installing the extension you agree to our <a href="https://sites.google.com/view/enable-right-click/privacy-policy" target="_blank" style="color: #2563eb; text-decoration: underline;">Privacy Policy</a>.
+            By installing the extension you agree to our <a href="https://smartsearcher.net/privacy-policy.html" target="_blank" style="color: #2563eb; text-decoration: underline;">Privacy Policy</a>.
         </div>
     </div>
 </div>
-<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{\"token\": \"2bce10adebba4eac9be975f92b506e0d\"}'></script>
 <script>
-
-
     document.addEventListener('DOMContentLoaded', () => {
         const overlay = document.getElementById('promoOverlay');
         const closeBtn = document.getElementById('closeOverlayBtn');
@@ -449,11 +473,12 @@
         // Закрытие по клику на крестик
         if (closeBtn && overlay) {
             closeBtn.addEventListener('click', () => {
+                overlay.classList.remove('remove');
                 overlay.classList.remove('active');
             });
         }
     });
 </script>
-
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "687efcc2102b4ca8b11decb34bf1ddf4"}'></script>
 </body>
 </html>
